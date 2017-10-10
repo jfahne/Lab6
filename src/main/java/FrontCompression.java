@@ -44,8 +44,19 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
+        String[] corpusArray = corpus.split("\n");
+        String output = "";
+        String prevWord = "";
+        for (String curWord : corpusArray) {
 
-        return "";
+            output = output
+            + longestPrefix(curWord, prevWord)
+            + " "
+            + curWord.substring(longestPrefix(curWord, prevWord))
+            + "\n";
+            prevWord = curWord;
+        }
+        return output;
     }
 
     /**
@@ -67,8 +78,15 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
+        String[] corpusArray = corpus.split("\n");
+        String output = "";
+        String prevWord = "";
+        for (String curWord : corpusArray) {
+            output = output + prevWord.substring(0,  Integer.parseInt(curWord.split(" ")[0])) + curWord.split(" ")[1] + "\n";
+            prevWord = prevWord.substring(0,  Integer.parseInt(curWord.split(" ")[0])) + curWord.split(" ")[1];
 
-        return "";
+        }
+        return output;
     }
 
     /**
@@ -82,7 +100,19 @@ public class FrontCompression {
         /*
          * Complete this function.
          */
-        return 0;
+        char[] prefixParam = firstString.toCharArray();
+        char[] prefixParam2 = secondString.toCharArray();
+
+        int i = 0;
+        while ((i < prefixParam.length) && (i < prefixParam2.length)) {
+
+            if (prefixParam[i] == prefixParam2[i]) {
+                i += 1;
+            } else {
+                break;
+            }
+        }
+        return i;
     }
 
     /**
